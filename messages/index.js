@@ -42,7 +42,7 @@ bot.dialog('/', function (session) {
             console.log('body:', body); // Print the HTML for the Google homepage.
             var obj = JSON.parse(body);
             console.log(obj.main.temp);
-            session.send('현재 서울 온도는 '+tuc.f2c(obj.main.temp)+'도입니다.');
+            session.send('현재 서울 온도는 '+tuc.k2c(obj.main.temp)+'도입니다.');
 
         });
 
