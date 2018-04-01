@@ -8,7 +8,8 @@
     "botbuilder-azure": "^3.0.4",
     "xml2js": "^0.4.19",
     "request":"^2.85.0",
-    "parse-json":"^4.0.0"
+    "parse-json":"^4.0.0",
+    "temp-units-conv":"^1.0.2"
   },
   "devDependencies": {
     "restify": "^5.0.0"

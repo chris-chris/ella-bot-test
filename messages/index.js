@@ -6,6 +6,7 @@ var path = require('path');
 var parseString = require('xml2js').parseString;
 var request = require('request');
 var parseJson = require('parse-json');
+var tuc = require('temp-units-conv');
 
 var useEmulator = (process.env.NODE_ENV == 'development');
 
@@ -34,23 +35,14 @@ bot.dialog('/', function (session) {
     // 날씨
     if(session.message.text.includes("날씨")){
 
-        request('http://www.weather.go.kr/wid/queryDFSRSS.jsp?zone=4113554500', function (error, response, body) {
-            
+        request('http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=77bd3b7b107f90d1879f49fb1637dd25', function (error, response, body) {
+
             //   console.log('error:', error); // Print the error if one occurred
             //   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
             console.log('body:', body); // Print the HTML for the Google homepage.
-            parseString(body, function (err, result) {
-                wdata = result.rss.channel[0].item[0].description[0].body[0].data
-                console.dir(wdata);
-                for(var idx in wdata){
-                    if(wdata[idx].day == 1 && wdata[idx].hour == 12){
-
-                        console.log("오늘 " + wdata[idx].hour + "시 온도는 " + wdata[idx].temp + "도 입니다.");
-
-                    }
-
-                }
-            });
+            var obj = JSON.parse(body);
+            console.log(obj.main.temp);
+            session.send('현재 서울 온도는 '+tuc.f2c(obj.main.temp)+'도입니다.');
 
         });
 
@@ -78,6 +70,8 @@ bot.dialog('/', function (session) {
             
         });
 
+    }else{
+        session.send("좋은 질문이네요. 하지만 저도 아직 잘 모르겠어요. 나중에 좀더 알아보도록 할께요");
     }
 
 });
