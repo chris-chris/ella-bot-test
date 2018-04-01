@@ -38,7 +38,7 @@ bot.dialog('/', function (session) {
         request('http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=77bd3b7b107f90d1879f49fb1637dd25', function (error, response, body) {
 
             //   console.log('error:', error); // Print the error if one occurred
-            //   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+            //   console.log('statusCode:', response && response.statusCode);
             console.log('body:', body); // Print the HTML for the Google homepage.
             var obj = JSON.parse(body);
             console.log(obj.main.temp);
@@ -50,7 +50,7 @@ bot.dialog('/', function (session) {
 
         request('http://earthquake.kr/exchange', function (error, response, body) {
             //   console.log('error:', error); // Print the error if one occurred
-            //   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+            //   console.log('statusCode:', response && response.statusCode);
             console.log('body:', body); // Print the HTML for the Google homepage.
             var obj = JSON.parse(body);
             console.log(obj.USDKRW);
@@ -62,7 +62,7 @@ bot.dialog('/', function (session) {
         
         request('https://api.korbit.co.kr/v1/ticker', function (error, response, body) {
             //   console.log('error:', error); // Print the error if one occurred
-            //   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+            //   console.log('statusCode:', response && response.statusCode);
             console.log('body:', body); // Print the HTML for the Google homepage.
             var obj = JSON.parse(body);
             console.log(obj.last);
